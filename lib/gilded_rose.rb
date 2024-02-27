@@ -8,7 +8,6 @@ class GildedRose
   end
 
   def tick
-
     case name
     when "Normal Item"
       return normal_tick
