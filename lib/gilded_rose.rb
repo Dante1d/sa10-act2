@@ -1,6 +1,12 @@
 module GildedRose
+  DEFAULT_CLASS = Item
+  SPECIALIZED_CLASSES = {
+    "Normal Item"                                       => Normal,
+    "Aged Brie"                                         => Brie,
+    "Backstage passes to a TAFKAL80ETC concert"         => Backstage  }
+
   def self.new(name:, days_remaining:, quality:)
-    @item = klass_for(name).new(quality, days_remaining)
+    (SPECIALIZED_CLASSES[name] || DEFAULT_CLASS).new(quality, days_remaining)
   end
 
   def self.klass_for(name)
