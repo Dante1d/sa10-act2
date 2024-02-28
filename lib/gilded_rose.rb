@@ -7,48 +7,22 @@ class GildedRose
     @quality = quality
   end
 
-  def normal_tick
-    @item = Normal.new(quality, days_remaining)
-    item.tick
-  end
-
-  def brie_tick
-    @item = Brie.new(quality, days_remaining)
-    item.tick
-  end
-
-  def sulfuras_tick
-    @item = Sulfuras.new(quality, days_remaining)
-    item.tick
-  end
-
-  def backstage_tick
-    @item = Backstage.new(quality, days_remaining)
-    item.tick
-  end
-
-  def quality
-    return item.quality if item
-    @quality
-  end
-
-  def days_remaining
-    return items.days_remaining if item
-    @days_remaining
-  end
-
-
   def tick
     case name
     when "Normal Item"
-      return normal_tick
+      @item = Normal.new(quality, days_remaining)
+      item.tick
     when "Aged Brie"
-      return brie_tick
+      @item = Brie.new(quality, days_remaining)
+      item.tick
     when "Sulfuras, Hand of Ragnaros"
-      return sulfuras_tick
+      @item = Sulfuras.new(quality, days_remaining)
+      item.tick
     when "Backstage passes to a TAFKAL80ETC concert"
-      return backstage_tick
+      @item = Backstage.new(quality, days_remaining)
+      item.tick
     end
+  end
 
   class Normal
     attr_reader :quality, :days_remaining
@@ -109,6 +83,36 @@ class GildedRose
       @quality += 1 if @days_remaining < 10
       @quality += 1 if @days_remaining < 5
     end
+
+  def normal_tick
+    @item = Normal.new(quality, days_remaining)
+    item.tick
+  end
+
+  def brie_tick
+    @item = Brie.new(quality, days_remaining)
+    item.tick
+  end
+
+  def sulfuras_tick
+    @item = Sulfuras.new(quality, days_remaining)
+    item.tick
+  end
+
+  def backstage_tick
+    @item = Backstage.new(quality, days_remaining)
+    item.tick
+  end
+
+  def quality
+    return item.quality if item
+    @quality
+  end
+
+  def days_remaining
+    return items.days_remaining if item
+    @days_remaining
+  end
 
     # if name == "Normal Item"
     #   return normal_tick
